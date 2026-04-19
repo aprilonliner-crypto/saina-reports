@@ -1,0 +1,905 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>日历产品线 VOC 双源交叉验证</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    margin: 0; padding: 0;
+    background: #FAFAF8;
+    font-family: 'Noto Sans SC', 'Inter', sans-serif;
+    color: #1A1A1A;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .card {
+    width: 960px;
+    margin: 0 auto;
+    background: #FAFAF8;
+    padding: 0;
+  }
+
+  /* === HEADER === */
+  .header {
+    background: #141414;
+    color: #FAFAF8;
+    padding: 36px 48px 32px;
+    position: relative;
+  }
+
+  .header .sig {
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: rgba(250,250,248,0.4);
+    margin-bottom: 6px;
+  }
+
+  .header .title-row {
+    display: flex;
+    align-items: baseline;
+    gap: 16px;
+    margin-bottom: 8px;
+  }
+
+  .header h1 {
+    font-size: 36px;
+    font-weight: 900;
+    letter-spacing: -1px;
+    line-height: 1.1;
+  }
+
+  .header .subtitle {
+    font-size: 14px;
+    font-weight: 400;
+    color: rgba(250,250,248,0.5);
+    letter-spacing: 1px;
+  }
+
+  .header .meta-row {
+    display: flex;
+    gap: 24px;
+    margin-top: 12px;
+    font-size: 12px;
+    color: rgba(250,250,248,0.45);
+    letter-spacing: 0.5px;
+  }
+
+  .header .accent-bar {
+    position: absolute;
+    bottom: 0; left: 0;
+    display: flex;
+    width: 100%;
+    height: 4px;
+  }
+  .header .accent-bar span:nth-child(1) { flex: 5; background: #D40000; }
+  .header .accent-bar span:nth-child(2) { flex: 3; background: #003082; }
+  .header .accent-bar span:nth-child(3) { flex: 2; background: #F5C518; }
+
+  /* === BODY === */
+  .body { padding: 40px 48px 48px; }
+
+  /* Section divider */
+  .section { margin-bottom: 40px; }
+  .section:last-child { margin-bottom: 0; }
+
+  .section-label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: #003082;
+    margin-bottom: 6px;
+  }
+
+  .section-title {
+    font-size: 24px;
+    font-weight: 800;
+    line-height: 1.2;
+    margin-bottom: 16px;
+    letter-spacing: -0.5px;
+  }
+
+  .divider {
+    height: 2px;
+    background: #141414;
+    margin-bottom: 20px;
+  }
+
+  .divider-thin {
+    height: 1px;
+    background: #E0DED8;
+    margin: 20px 0;
+  }
+
+  /* KPI row */
+  .kpi-row {
+    display: flex;
+    gap: 0;
+    margin-bottom: 24px;
+  }
+
+  .kpi-box {
+    flex: 1;
+    padding: 20px 24px;
+    border-right: 1px solid #E0DED8;
+  }
+  .kpi-box:last-child { border-right: none; }
+  .kpi-box:first-child { padding-left: 0; }
+
+  .kpi-value {
+    font-size: 36px;
+    font-weight: 900;
+    line-height: 1;
+    letter-spacing: -1px;
+  }
+  .kpi-value.red { color: #D40000; }
+  .kpi-value.blue { color: #003082; }
+  .kpi-value.dark { color: #141414; }
+
+  .kpi-label {
+    font-size: 12px;
+    color: #888;
+    margin-top: 6px;
+    letter-spacing: 0.5px;
+  }
+
+  /* Timeline */
+  .timeline {
+    position: relative;
+    padding-left: 28px;
+    margin: 16px 0;
+  }
+
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 6px;
+    top: 4px;
+    bottom: 4px;
+    width: 2px;
+    background: #E0DED8;
+  }
+
+  .tl-item {
+    position: relative;
+    margin-bottom: 16px;
+    padding-bottom: 0;
+  }
+  .tl-item:last-child { margin-bottom: 0; }
+
+  .tl-item::before {
+    content: '';
+    position: absolute;
+    left: -24px;
+    top: 7px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #141414;
+  }
+  .tl-item.red::before { background: #D40000; }
+  .tl-item.blue::before { background: #003082; }
+  .tl-item.yellow::before { background: #F5C518; }
+  .tl-item.green::before { background: #2D8B4E; }
+
+  .tl-date {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: #888;
+    margin-bottom: 2px;
+  }
+
+  .tl-text {
+    font-size: 14px;
+    line-height: 1.5;
+    color: #1A1A1A;
+  }
+
+  .tl-metric {
+    display: inline-block;
+    font-size: 12px;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: 2px;
+    margin-top: 4px;
+  }
+  .tl-metric.bad { background: #D40000; color: #fff; }
+  .tl-metric.warn { background: #F5C518; color: #141414; }
+  .tl-metric.ok { background: #2D8B4E; color: #fff; }
+
+  /* Data table */
+  .data-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+    margin: 12px 0;
+  }
+
+  .data-table th {
+    text-align: left;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: #888;
+    padding: 8px 12px;
+    border-bottom: 2px solid #141414;
+  }
+
+  .data-table td {
+    padding: 8px 12px;
+    border-bottom: 1px solid #F0EEE8;
+    vertical-align: top;
+  }
+
+  .data-table tr.ours td { font-weight: 600; }
+  .data-table tr.highlight td { background: rgba(0,48,130,0.04); }
+
+  .tag {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: 2px;
+    margin: 1px 2px;
+  }
+  .tag.red { background: rgba(212,0,0,0.1); color: #D40000; }
+  .tag.blue { background: rgba(0,48,130,0.1); color: #003082; }
+  .tag.yellow { background: rgba(245,197,24,0.15); color: #9A7A00; }
+  .tag.green { background: rgba(45,139,78,0.1); color: #2D8B4E; }
+  .tag.gray { background: rgba(0,0,0,0.06); color: #666; }
+
+  /* Breakpoint cards */
+  .bp-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin: 16px 0;
+  }
+
+  .bp-card {
+    border: 1px solid #E0DED8;
+    padding: 20px;
+    position: relative;
+  }
+
+  .bp-card .bp-badge {
+    position: absolute;
+    top: 0; left: 20px;
+    transform: translateY(-50%);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    padding: 3px 10px;
+    text-transform: uppercase;
+  }
+  .bp-badge.confirmed { background: #D40000; color: #fff; }
+  .bp-badge.partial { background: #F5C518; color: #141414; }
+
+  .bp-card h4 {
+    font-size: 15px;
+    font-weight: 700;
+    margin-bottom: 8px;
+    margin-top: 4px;
+  }
+
+  .bp-card .bp-stats {
+    font-size: 12px;
+    color: #666;
+    line-height: 1.7;
+  }
+
+  .bp-card .bp-stats strong {
+    color: #1A1A1A;
+  }
+
+  /* Bar chart inline */
+  .bar-row {
+    display: flex;
+    align-items: center;
+    margin-bottom: 6px;
+    font-size: 12px;
+  }
+
+  .bar-label {
+    width: 100px;
+    text-align: right;
+    padding-right: 12px;
+    color: #666;
+    font-size: 11px;
+  }
+
+  .bar-track {
+    flex: 1;
+    height: 16px;
+    background: #F0EEE8;
+    position: relative;
+  }
+
+  .bar-fill {
+    height: 100%;
+    position: absolute;
+    left: 0; top: 0;
+  }
+
+  .bar-fill.red { background: #D40000; }
+  .bar-fill.blue { background: #003082; }
+  .bar-fill.yellow { background: #F5C518; }
+  .bar-fill.gray { background: #999; }
+
+  .bar-value {
+    width: 48px;
+    text-align: right;
+    font-size: 11px;
+    font-weight: 700;
+    padding-left: 8px;
+  }
+
+  /* Insight box */
+  .insight {
+    border-left: 3px solid #D40000;
+    padding: 12px 16px;
+    background: rgba(212,0,0,0.03);
+    font-size: 14px;
+    line-height: 1.6;
+    margin: 16px 0;
+  }
+
+  .insight.blue { border-left-color: #003082; background: rgba(0,48,130,0.03); }
+  .insight.yellow { border-left-color: #F5C518; background: rgba(245,197,24,0.05); }
+
+  /* Two-col */
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+
+  /* Footer */
+  .footer {
+    background: #141414;
+    color: rgba(250,250,248,0.35);
+    padding: 20px 48px;
+    font-size: 11px;
+    display: flex;
+    justify-content: space-between;
+    letter-spacing: 0.5px;
+  }
+
+  .footer a { color: rgba(250,250,248,0.5); text-decoration: none; }
+
+  /* Mondrian accent block */
+  .mondrian-row {
+    display: flex;
+    gap: 2px;
+    margin: 24px 0;
+    height: 6px;
+  }
+  .mondrian-row span:nth-child(1) { flex: 8; background: #D40000; }
+  .mondrian-row span:nth-child(2) { flex: 3; background: #FAFAF8; border: 1px solid #E0DED8; }
+  .mondrian-row span:nth-child(3) { flex: 5; background: #003082; }
+  .mondrian-row span:nth-child(4) { flex: 2; background: #F5C518; }
+  .mondrian-row span:nth-child(5) { flex: 12; background: #FAFAF8; border: 1px solid #E0DED8; }
+</style>
+</head>
+<body>
+<div class="card">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="sig">C.C. × C2 · 赛纳电子 · 运营一号位</div>
+    <div class="title-row">
+      <h1>日历产品线 VOC 双源交叉验证</h1>
+    </div>
+    <div class="subtitle">DIGITAL CALENDAR · TWO-SOURCE CROSS-VALIDATION REPORT</div>
+    <div class="meta-row">
+      <span>数据截至 2026-04-17</span>
+      <span>评论 12,171 条（我们）+ 24,718 条（竞品）</span>
+      <span>客诉工单 1,148 条</span>
+      <span>退货数据待补</span>
+    </div>
+    <div class="accent-bar"><span></span><span></span><span></span></div>
+  </div>
+
+  <div class="body">
+
+    <!-- S0: OVERVIEW KPI -->
+    <div class="section">
+      <div class="section-label">S0 · OVERVIEW</div>
+      <div class="section-title">全景数字</div>
+      <div class="divider"></div>
+
+      <div class="kpi-row">
+        <div class="kpi-box">
+          <div class="kpi-value dark">4.66</div>
+          <div class="kpi-label">我们品牌均星</div>
+        </div>
+        <div class="kpi-box">
+          <div class="kpi-value red">54.9%</div>
+          <div class="kpi-label">TM21 差评率（最差型号）</div>
+        </div>
+        <div class="kpi-box">
+          <div class="kpi-value blue">1,148</div>
+          <div class="kpi-label">客诉工单总量</div>
+        </div>
+        <div class="kpi-box">
+          <div class="kpi-value dark">5</div>
+          <div class="kpi-label">双源确认断点</div>
+        </div>
+      </div>
+
+      <div class="two-col">
+        <div>
+          <div style="font-size:12px; color:#888; font-weight:700; letter-spacing:1px; margin-bottom:8px;">型号健康度</div>
+          <div class="bar-row">
+            <div class="bar-label">TM15</div>
+            <div class="bar-track"><div class="bar-fill blue" style="width:8.4%"></div></div>
+            <div class="bar-value">8.4%</div>
+          </div>
+          <div class="bar-row">
+            <div class="bar-label">TM10</div>
+            <div class="bar-track"><div class="bar-fill blue" style="width:8.2%"></div></div>
+            <div class="bar-value">8.2%</div>
+          </div>
+          <div class="bar-row">
+            <div class="bar-label">TM32</div>
+            <div class="bar-track"><div class="bar-fill yellow" style="width:52%"></div></div>
+            <div class="bar-value">52.0%</div>
+          </div>
+          <div class="bar-row">
+            <div class="bar-label" style="font-weight:700; color:#D40000;">TM21</div>
+            <div class="bar-track"><div class="bar-fill red" style="width:54.9%"></div></div>
+            <div class="bar-value" style="color:#D40000;">54.9%</div>
+          </div>
+          <div style="font-size:11px; color:#999; margin-top:4px;">差评率（≤3星）· 数值越低越好</div>
+        </div>
+        <div>
+          <div style="font-size:12px; color:#888; font-weight:700; letter-spacing:1px; margin-bottom:8px;">品牌健康度</div>
+          <div class="bar-row">
+            <div class="bar-label">Cozyla Mate</div>
+            <div class="bar-track"><div class="bar-fill blue" style="width:5.9%"></div></div>
+            <div class="bar-value">5.9%</div>
+          </div>
+          <div class="bar-row">
+            <div class="bar-label">cozyla</div>
+            <div class="bar-track"><div class="bar-fill blue" style="width:7%"></div></div>
+            <div class="bar-value">7.0%</div>
+          </div>
+          <div class="bar-row">
+            <div class="bar-label">Dragon Touch</div>
+            <div class="bar-track"><div class="bar-fill yellow" style="width:12.5%"></div></div>
+            <div class="bar-value">12.5%</div>
+          </div>
+          <div style="font-size:11px; color:#999; margin-top:4px;">差评率 · Dragon Touch 被 TM21 拖低</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="mondrian-row"><span></span><span></span><span></span><span></span><span></span></div>
+
+    <!-- S1: TM21 INCIDENT TIMELINE -->
+    <div class="section">
+      <div class="section-label">S1 · TM21 事故时间线</div>
+      <div class="section-title">两波事故，同一个型号，不同的病根</div>
+      <div class="divider"></div>
+
+      <div class="two-col">
+        <div>
+          <div style="font-size:13px; font-weight:700; margin-bottom:4px;">
+            <span class="tag red">WAVE 1</span> 后台推送卡死
+          </div>
+          <div class="timeline">
+            <div class="tl-item red">
+              <div class="tl-date">2025-04-20</div>
+              <div class="tl-text">后台推送固件，设备出现卡死不良</div>
+              <span class="tl-metric bad">差评率 53.8%</span>
+            </div>
+            <div class="tl-item red">
+              <div class="tl-date">2025-05</div>
+              <div class="tl-text">评论大量涌入。122 条评论，109 条差评。Firmware update(15)、Crash(8) 双标签验证</div>
+              <span class="tl-metric bad">差评率 89.3%</span>
+            </div>
+            <div class="tl-item red">
+              <div class="tl-date">2025-06</div>
+              <div class="tl-text">17 条评论全部差评。客诉持续约 1 个月</div>
+              <span class="tl-metric bad">差评率 100%</span>
+            </div>
+            <div class="tl-item yellow">
+              <div class="tl-date">2025-07 ~ 08</div>
+              <div class="tl-text">逐步回落，修复补丁生效</div>
+              <span class="tl-metric warn">62% → 43%</span>
+            </div>
+            <div class="tl-item green">
+              <div class="tl-date">2025-10</div>
+              <div class="tl-text">12 条评论零差评，短暂恢复</div>
+              <span class="tl-metric ok">差评率 0%</span>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <div style="font-size:13px; font-weight:700; margin-bottom:4px;">
+            <span class="tag red">WAVE 2</span> TP 触摸屏跳屏
+          </div>
+          <div class="timeline">
+            <div class="tl-item blue">
+              <div class="tl-date">2025-11</div>
+              <div class="tl-text">差评率回升。客诉端开始出现 TP 跳屏报告</div>
+              <span class="tl-metric bad">差评率 51.5%</span>
+            </div>
+            <div class="tl-item red">
+              <div class="tl-date">2025-12</div>
+              <div class="tl-text">客诉陆续出现触摸屏跳屏现象。客诉端跳点问题 68 单，仅 TM21 独有</div>
+              <span class="tl-metric warn">差评率 3.8%（评论滞后）</span>
+            </div>
+            <div class="tl-item red">
+              <div class="tl-date">2026-01 ~ 02</div>
+              <div class="tl-text">评论端追上。跳屏差评集中爆发</div>
+              <span class="tl-metric bad">26% → 60%</span>
+            </div>
+            <div class="tl-item yellow">
+              <div class="tl-date">2026-03</div>
+              <div class="tl-text">不良开始减少，差评率回落</div>
+              <span class="tl-metric warn">差评率 33.3%</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="insight">
+        <strong>两波事故的本质不同：</strong>Wave 1 是软件推送事故（可修），Wave 2 是硬件 TP 方案缺陷（跳点问题客诉 68 单、35 次软件推送没根治）。评论和客诉都验证了同一个结论——这个型号的触控方案有根本性问题。
+      </div>
+    </div>
+
+    <!-- S2: CROSS-VALIDATION -->
+    <div class="section">
+      <div class="section-label">S2 · 双源交叉验证</div>
+      <div class="section-title">五个断点，哪些被两个数据源同时确认</div>
+      <div class="divider"></div>
+
+      <div class="bp-grid">
+        <div class="bp-card">
+          <div class="bp-badge confirmed">✓ 双源确认</div>
+          <h4>同步与连接</h4>
+          <div class="bp-stats">
+            客诉 <strong>262 单</strong>（#1）· 评论标签 <strong>73 次</strong><br>
+            TM15 占 25%、TM10 占 23%<br>
+            核心承诺"智能日历"的兑现问题
+          </div>
+        </div>
+        <div class="bp-card">
+          <div class="bp-badge confirmed">✓ 双源确认</div>
+          <h4>硬件故障</h4>
+          <div class="bp-stats">
+            客诉 <strong>212 单</strong>（#2）· 评论标签 <strong>142 次</strong><br>
+            TM10 硬件故障占 32% + 电源充电占 22%<br>
+            TM10 的可靠性比 TM15 差一截
+          </div>
+        </div>
+        <div class="bp-card">
+          <div class="bp-badge confirmed">✓ 双源确认</div>
+          <h4>网络连接</h4>
+          <div class="bp-stats">
+            客诉 <strong>95 单</strong> · 评论标签 <strong>21 次</strong><br>
+            2026 Q1 出现 WiFi drops 新信号<br>
+            需要盯是否为新批次问题
+          </div>
+        </div>
+        <div class="bp-card">
+          <div class="bp-badge partial">⚡ 评论端更强</div>
+          <h4>APP / 软件体验</h4>
+          <div class="bp-stats">
+            客诉 <strong>42 单</strong> · 评论标签 <strong>84 次</strong><br>
+            APP 不好用的人更倾向写差评而不是找客服<br>
+            客诉端低估了这个问题的真实规模
+          </div>
+        </div>
+        <div class="bp-card" style="grid-column: span 2;">
+          <div class="bp-badge confirmed">✓ 双源确认</div>
+          <h4>固件更新体验 — 与 TM21 跳点问题强关联</h4>
+          <div class="bp-stats">
+            客诉 <strong>85 单</strong>（TM21 占 42%）· 评论标签 <strong>32 次</strong><br>
+            TM21 频繁推补丁（35 次软件推送 + 10 个修复包 + 7 次固件推送），更新体验本身成为新投诉源。<br>
+            Follow-up 解决率：TM21 仅 82%（tracked），TM15 为 94%。
+          </div>
+        </div>
+      </div>
+
+      <div class="insight blue">
+        <strong>第三源缺失：</strong>退货数据目录为空。没有退货原因码，就无法判断"有多少人直接退货但没有写评论也没有找客服"——沉默流失的规模是未知数。补上后可以做完整的三源验证。
+      </div>
+    </div>
+
+    <div class="mondrian-row"><span></span><span></span><span></span><span></span><span></span></div>
+
+    <!-- S3: MULTI-DIMENSIONAL -->
+    <div class="section">
+      <div class="section-label">S3 · 多维度分析</div>
+      <div class="section-title">差评不是一种东西，至少是三种</div>
+      <div class="divider"></div>
+
+      <div style="margin-bottom:24px;">
+        <div style="font-size:13px; font-weight:700; margin-bottom:12px;">维度 A · 星级拆解：1星和3星是两种完全不同的差评</div>
+        <table class="data-table">
+          <tr>
+            <th></th>
+            <th>1星（704条）</th>
+            <th>3星（132条）</th>
+          </tr>
+          <tr>
+            <td style="font-weight:700;">核心标签</td>
+            <td><span class="tag red">Product failure</span> <span class="tag red">Product durability</span> <span class="tag red">Recommend Intention</span></td>
+            <td><span class="tag yellow">Price</span> <span class="tag yellow">Calendar</span> <span class="tag yellow">Compatibility</span> <span class="tag yellow">Instructions</span></td>
+          </tr>
+          <tr>
+            <td style="font-weight:700;">本质</td>
+            <td>产品坏了 / 根本用不了</td>
+            <td>能用但没达到预期</td>
+          </tr>
+          <tr>
+            <td style="font-weight:700;">归因层</td>
+            <td><strong>品质 / 硬件 / 固件</strong></td>
+            <td><strong>定价 / 功能 / 说明书</strong></td>
+          </tr>
+          <tr>
+            <td style="font-weight:700;">谁能改</td>
+            <td>产品 + 品质</td>
+            <td>运营 + 市场</td>
+          </tr>
+        </table>
+      </div>
+
+      <div style="margin-bottom:24px;">
+        <div style="font-size:13px; font-weight:700; margin-bottom:12px;">维度 B · 品牌差评人格</div>
+        <table class="data-table">
+          <tr>
+            <th>品牌</th>
+            <th>差评第一标签</th>
+            <th>链路</th>
+            <th>驱动力</th>
+          </tr>
+          <tr class="ours">
+            <td>Dragon Touch</td>
+            <td><span class="tag red">Customer service (49)</span></td>
+            <td>产品出问题 → 找客服 → 没解决 → 怒评</td>
+            <td><strong>品质驱动</strong></td>
+          </tr>
+          <tr class="ours">
+            <td>cozyla</td>
+            <td><span class="tag blue">Customer service (24)</span></td>
+            <td>同步不顺 → 找客服</td>
+            <td><strong>软件驱动</strong></td>
+          </tr>
+          <tr class="ours">
+            <td>Cozyla Mate</td>
+            <td><span class="tag yellow">Price (22)</span></td>
+            <td>觉得贵 → 体验没匹配价格</td>
+            <td><strong>预期驱动</strong></td>
+          </tr>
+        </table>
+      </div>
+
+      <div>
+        <div style="font-size:13px; font-weight:700; margin-bottom:12px;">维度 C · 季度迁移：问题在从软件往硬件走</div>
+        <table class="data-table">
+          <tr>
+            <th>季度</th>
+            <th>头部标签</th>
+            <th>信号</th>
+          </tr>
+          <tr>
+            <td>2025 Q1</td>
+            <td><span class="tag gray">APP features</span> <span class="tag gray">Customer service</span></td>
+            <td>APP 问题集中爆发期</td>
+          </tr>
+          <tr>
+            <td>2025 Q2</td>
+            <td><span class="tag red">Firmware update (20)</span> <span class="tag red">Customer service (37)</span></td>
+            <td style="font-weight:600; color:#D40000;">← TM21 Wave 1 高峰</td>
+          </tr>
+          <tr>
+            <td>2025 Q3</td>
+            <td><span class="tag blue">Sync Experience</span> <span class="tag yellow">Price</span></td>
+            <td>固件问题收敛，同步和预期管理浮出来</td>
+          </tr>
+          <tr>
+            <td>2025 Q4</td>
+            <td><span class="tag yellow">Product quality</span> <span class="tag yellow">Package</span> <span class="tag yellow">On/Off failure</span></td>
+            <td style="font-weight:600;">← 问题从软件迁移到硬件</td>
+          </tr>
+          <tr>
+            <td>2026 Q1</td>
+            <td><span class="tag red">Product failure</span> <span class="tag blue">WiFi drops (新)</span></td>
+            <td>WiFi 掉线是新信号，盯新批次</td>
+          </tr>
+        </table>
+      </div>
+    </div>
+
+    <!-- S4: COMPETITIVE POSITION -->
+    <div class="section">
+      <div class="section-label">S4 · 竞品位置</div>
+      <div class="section-title">Skylight 在下坠，ApoloSign 在上面等着，中间是我们的位置</div>
+      <div class="divider"></div>
+
+      <table class="data-table">
+        <tr>
+          <th>品牌</th>
+          <th>评论数</th>
+          <th>均星</th>
+          <th>差评率</th>
+          <th>趋势（近 3 月）</th>
+          <th>定位</th>
+        </tr>
+        <tr class="highlight">
+          <td><strong>ApoloSign</strong></td>
+          <td>1,424</td>
+          <td><strong>4.86</strong></td>
+          <td><strong>3.6%</strong></td>
+          <td><span class="tag green">稳定 0-5%</span></td>
+          <td>标杆</td>
+        </tr>
+        <tr class="ours">
+          <td>Cozyla Mate ←</td>
+          <td>3,711</td>
+          <td>4.75</td>
+          <td>5.9%</td>
+          <td><span class="tag green">稳定</span></td>
+          <td>追标杆</td>
+        </tr>
+        <tr class="ours">
+          <td>cozyla ←</td>
+          <td>3,731</td>
+          <td>4.73</td>
+          <td>7.0%</td>
+          <td><span class="tag blue">稳定 5-8%</span></td>
+          <td>追标杆</td>
+        </tr>
+        <tr class="ours">
+          <td>Dragon Touch ←</td>
+          <td>4,729</td>
+          <td>4.53</td>
+          <td>12.5%</td>
+          <td><span class="tag yellow">被 TM21 拖低</span></td>
+          <td>待拯救</td>
+        </tr>
+        <tr>
+          <td>Herncptar</td>
+          <td>2,190</td>
+          <td>4.48</td>
+          <td>12.9%</td>
+          <td><span class="tag yellow">2026 波动大</span></td>
+          <td>中等</td>
+        </tr>
+        <tr>
+          <td>Canupdog</td>
+          <td>3,149</td>
+          <td>4.52</td>
+          <td>12.7%</td>
+          <td><span class="tag red">2026-03 崩到 85%</span></td>
+          <td>崩盘</td>
+        </tr>
+        <tr>
+          <td>Skylight</td>
+          <td>6,191</td>
+          <td>3.95</td>
+          <td>30.1%</td>
+          <td><span class="tag red">持续恶化 → 50%</span></td>
+          <td>品类第一在自毁</td>
+        </tr>
+        <tr>
+          <td>LOOFII</td>
+          <td>2,376</td>
+          <td>4.07</td>
+          <td>26.0%</td>
+          <td><span class="tag red">掉队中</span></td>
+          <td>下滑</td>
+        </tr>
+      </table>
+
+      <div class="insight blue">
+        <strong>窗口判断：</strong>Skylight 作为品类第一差评率已经到 50%，Canupdog 崩盘，LOOFII 在掉队。Cozyla 系 5-7% 差评率已经接近 ApoloSign 的 3.6%。如果 TM21 止血 + Dragon Touch 品牌恢复，整个日历线的竞品位置是往上走的。
+      </div>
+    </div>
+
+    <div class="mondrian-row"><span></span><span></span><span></span><span></span><span></span></div>
+
+    <!-- S5: 8月异常 & 旺季错位 -->
+    <div class="section">
+      <div class="section-label">S5 · 时间维度洞察</div>
+      <div class="section-title">两个时间效应：批次事故 + 旺季礼品错位</div>
+      <div class="divider"></div>
+
+      <div class="two-col">
+        <div>
+          <div style="font-size:13px; font-weight:700; margin-bottom:8px;">2025-08 批次固件事故</div>
+          <div style="font-size:13px; line-height:1.7; color:#444;">
+            三个品牌同时飙升，不是单型号问题：<br>
+            <strong>Dragon Touch</strong> 12.5% → 27.2%<br>
+            <strong>cozyla</strong> 4.2% → 20.2%<br>
+            <strong>Cozyla Mate</strong> 8.7% → 22.7%<br><br>
+            差评标签分散（Price/Service/Calendar/Sync 各 4-8 次），说明固件问题引发了多种表面症状。<strong>延续到 9 月才恢复。</strong>
+          </div>
+        </div>
+        <div>
+          <div style="font-size:13px; font-weight:700; margin-bottom:8px;">旺季礼品购买-使用错位</div>
+          <div style="font-size:13px; line-height:1.7; color:#444;">
+            11-12 月差评率最低（4.7%-6.5%），但不是产品变好了——是礼品属性强，大量购买者不是使用者。<br><br>
+            <strong>真正的使用反馈滞后到 1-2 月。</strong><br>
+            2026-01 差评率 7.1% → 2026-03 9.6%，正是旺季购买的使用反馈陆续到位。<br><br>
+            <strong>读旺季数据不能只看当月，要看 +60 天窗口。</strong>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- S6: WHAT'S MISSING -->
+    <div class="section">
+      <div class="section-label">S6 · 未决钩子</div>
+      <div class="section-title">还差什么才能做决策</div>
+      <div class="divider"></div>
+
+      <table class="data-table">
+        <tr>
+          <th>优先级</th>
+          <th>缺口</th>
+          <th>谁能补</th>
+          <th>影响判断</th>
+        </tr>
+        <tr>
+          <td><span class="tag red">P0</span></td>
+          <td><strong>退货数据（FBA 退货原因码）</strong></td>
+          <td>邹撑院 / 数据中心</td>
+          <td>沉默流失规模未知，断点严重度排序缺依据</td>
+        </tr>
+        <tr>
+          <td><span class="tag red">P1</span></td>
+          <td><strong>TM21 去留决策</strong></td>
+          <td>产品 + 品质 + 你</td>
+          <td>继续补丁 vs 停售 vs 换触控方案</td>
+        </tr>
+        <tr>
+          <td><span class="tag yellow">P2</span></td>
+          <td><strong>TM10 电源/硬件可靠性供应链溯源</strong></td>
+          <td>供应链 + 品质</td>
+          <td>电源充电 22% + 硬件故障 32%，查是否换料</td>
+        </tr>
+        <tr>
+          <td><span class="tag yellow">P2</span></td>
+          <td><strong>2026 Q1 WiFi drops 新信号追踪</strong></td>
+          <td>研发</td>
+          <td>量小但需要盯，看是否新批次问题</td>
+        </tr>
+        <tr>
+          <td><span class="tag blue">P3</span></td>
+          <td><strong>Cozyla Mate 价格预期管理</strong></td>
+          <td>运营</td>
+          <td>Price 是其第一差评标签，listing 是否给了过高预期</td>
+        </tr>
+        <tr>
+          <td><span class="tag blue">P3</span></td>
+          <td><strong>ApoloSign 对标研究</strong></td>
+          <td>运营 + 产品</td>
+          <td>3.6% 差评率怎么做到的，产品差异还是运营差异</td>
+        </tr>
+      </table>
+    </div>
+
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <span>SAINA ELECTRONICS · DIGITAL CALENDAR DIVISION</span>
+    <span>双源交叉验证 v1 · 2026-04-19 · 退货数据补齐后升级为三源</span>
+  </div>
+
+</div>
+</body>
+</html>
