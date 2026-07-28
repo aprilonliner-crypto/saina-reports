@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AKASO × Amazon Retail — H2 Partnership</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#9BBFAD; --card:#FDFAEE; --card2:#F5F7E5;
+  --border:#B8CAA0; --border2:#D5E8B8;
+  --primary:#588157; --dark:#293D33; --sage:#658C6E; --green:#3A5A40;
+  --tag-bg:#E2F0CA; --text:#0F0F0D; --muted:#3A4430;
+  --warm:#D0986A; --warm2:#E3C198; --red:#C0533A;
+  --lemon:#CBD530; --lemon-bg:#F4F8D0; --lemon-tx:#5F6600;
+  --r:12px; --shadow:0 2px 10px rgba(41,61,51,.08); --shadow-h:0 8px 26px rgba(41,61,51,.14);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Inter',-apple-system,sans-serif;background:var(--bg);color:var(--text);
+  line-height:1.62;padding:44px 20px;-webkit-font-smoothing:antialiased;}
+.page{max-width:940px;margin:0 auto;background:var(--card);border:1px solid var(--border);
+  border-radius:var(--r);box-shadow:var(--shadow-h);overflow:hidden;}
+
+/* Header */
+.hd{background:var(--dark);color:#fff;padding:38px 48px 34px;position:relative;overflow:hidden;}
+.hd::after{content:"";position:absolute;right:-120px;top:-130px;width:400px;height:400px;
+  border-radius:50%;background:radial-gradient(circle,rgba(203,213,48,.15),transparent 70%);}
+.hd::before{content:"";position:absolute;left:-80px;bottom:-140px;width:300px;height:300px;
+  border-radius:50%;background:radial-gradient(circle,rgba(101,140,110,.25),transparent 70%);}
+.hd .brand{font-family:'Space Mono',monospace;font-size:11.5px;letter-spacing:3.5px;
+  color:var(--warm2);text-transform:uppercase;margin-bottom:14px;position:relative;}
+.hd h1{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:44px;line-height:1.05;
+  letter-spacing:.5px;position:relative;}
+.hd h1 .x{color:var(--lemon);font-weight:500;padding:0 8px;}
+.hd .meta{margin-top:16px;font-size:12.5px;color:#B8CAA0;font-family:'Space Mono',monospace;
+  letter-spacing:.5px;position:relative;}
+
+.body{padding:10px 48px 42px;}
+.sec{padding:26px 0;border-bottom:1px solid var(--border2);}
+.sec:last-child{border-bottom:none;}
+.sec-h{display:flex;align-items:baseline;gap:13px;margin-bottom:15px;}
+.sec-n{font-family:'Space Mono',monospace;font-size:12.5px;font-weight:700;color:var(--primary);
+  border:1.5px solid var(--border);border-radius:6px;padding:2px 8px;background:var(--card2);}
+.sec-t{font-family:'Cormorant Garamond',serif;font-weight:700;font-size:27px;color:var(--green);letter-spacing:.3px;}
+p{color:var(--muted);font-size:14px;margin-bottom:8px;}
+p b,li b{color:var(--green);font-weight:600;}
+.lead{font-size:15px;color:var(--text);line-height:1.7;}
+
+/* Democratize chain */
+.chain{display:grid;grid-template-columns:1fr auto 1fr auto 1fr;align-items:stretch;gap:8px;margin-top:18px;}
+.step{background:var(--card2);border:1px solid var(--border2);border-radius:10px;padding:18px 14px;text-align:center;}
+.step.hero{background:var(--lemon-bg);border-color:var(--lemon);}
+.step .who{font-family:'Space Mono',monospace;font-size:13px;letter-spacing:1.5px;color:var(--green);font-weight:700;}
+.step.hero .who{color:var(--lemon-tx);}
+.step .what{font-family:'Cormorant Garamond',serif;font-size:18px;color:var(--green);margin:9px 0 6px;font-weight:600;line-height:1.2;}
+.step .via{font-size:11px;color:var(--muted);line-height:1.4;font-style:italic;}
+.arrow{display:flex;align-items:center;font-size:20px;color:var(--sage);}
+
+/* Pillars */
+.pillars{display:flex;flex-wrap:wrap;gap:9px;margin-top:13px;}
+.pill{font-family:'Space Mono',monospace;font-size:12px;background:var(--tag-bg);color:var(--green);
+  border:1px solid var(--border2);border-radius:30px;padding:9px 16px;}
+.pill.key{background:var(--lemon-bg);border-color:var(--lemon);color:var(--lemon-tx);font-weight:700;}
+
+/* Brand cards */
+.two{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:6px;}
+.bcard{background:var(--card2);border:1px solid var(--border2);border-radius:12px;padding:20px 22px;
+  border-top:4px solid var(--primary);}
+.bcard.dt{border-top-color:var(--warm);}
+.bcard h4{font-family:'Space Mono',monospace;font-size:17px;letter-spacing:1.5px;color:var(--dark);margin-bottom:3px;}
+.bcard.dt h4{color:var(--warm);}
+.bcard .tag{font-size:11px;color:var(--sage);font-weight:600;margin-bottom:12px;text-transform:uppercase;letter-spacing:1px;}
+.bcard p{font-size:13px;margin-bottom:12px;}
+.chips{display:flex;flex-wrap:wrap;gap:6px;}
+.chip{font-family:'Space Mono',monospace;font-size:10.5px;background:var(--card);border:1px solid var(--border);
+  border-radius:5px;padding:4px 9px;color:var(--muted);}
+.nooverlap{text-align:center;font-size:12.5px;color:var(--sage);margin-top:14px;font-style:italic;}
+
+/* Lifecycle 1P/3P */
+.lifecycle{display:grid;grid-template-columns:1fr 46px 1fr;margin-top:6px;align-items:stretch;}
+.lc{border-radius:12px;padding:18px 22px;}
+.lc.p3{background:var(--card2);border:1px solid var(--border2);}
+.lc.p1{background:var(--dark);color:#fff;}
+.lc .lbl{font-family:'Space Mono',monospace;font-size:22px;font-weight:700;margin-bottom:2px;}
+.lc.p3 .lbl{color:var(--warm);}
+.lc.p1 .lbl{color:var(--lemon);}
+.lc .role{font-size:12.5px;font-weight:600;margin-bottom:13px;}
+.lc.p3 .role{color:var(--green);}
+.lc.p1 .role{color:var(--warm2);}
+.lc .crit{font-size:12px;padding:5px 0;border-bottom:1px dashed rgba(120,140,110,.28);}
+.lc.p3 .crit{color:var(--muted);}
+.lc.p1 .crit{color:#D5E8B8;border-color:rgba(200,220,180,.14);}
+.lc .crit:last-child{border-bottom:none;}
+.lc-arrow{display:flex;align-items:center;justify-content:center;font-size:26px;color:var(--sage);}
+.oneline{margin-top:15px;background:var(--lemon-bg);border:1px solid var(--lemon);border-radius:8px;
+  padding:13px 18px;font-size:13.5px;color:var(--lemon-tx);text-align:center;}
+.oneline b{color:var(--lemon-tx);}
+
+/* Vertical maturity axis (chart) */
+.axis{display:grid;grid-template-columns:52px 1fr;gap:16px;margin-top:8px;}
+.rail{position:relative;border-radius:8px;
+  background:linear-gradient(180deg,var(--primary) 0%,var(--sage) 40%,var(--border2) 60%,var(--warm2) 80%,var(--warm) 100%);}
+.rail .cap{position:absolute;left:0;right:0;text-align:center;font-family:'Space Mono',monospace;
+  font-size:12px;font-weight:700;color:#fff;text-shadow:0 1px 3px rgba(41,61,51,.5);}
+.rail .cap.t{top:10px;}.rail .cap.b{bottom:10px;}
+.rail .axlabel{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%) rotate(-90deg);
+  font-family:'Space Mono',monospace;font-size:9.5px;letter-spacing:3px;color:rgba(255,255,255,.85);white-space:nowrap;text-transform:uppercase;}
+.steps{display:flex;flex-direction:column;gap:12px;}
+.vrow{display:flex;gap:14px;align-items:flex-start;background:var(--card2);border:1px solid var(--border2);
+  border-radius:11px;padding:15px 18px;border-left:4px solid var(--sage);position:relative;}
+.vrow.s1{border-left-color:var(--primary);}
+.vrow.s3{border-left-color:var(--warm);}
+.vrow::before{content:"";position:absolute;left:-24px;top:22px;width:12px;height:12px;border-radius:50%;
+  background:var(--sage);border:3px solid var(--card);}
+.vrow.s1::before{background:var(--primary);}
+.vrow.s3::before{background:var(--warm);}
+.vrow .badge{flex-shrink:0;font-family:'Space Mono',monospace;font-size:13px;font-weight:700;
+  color:#fff;background:var(--sage);border-radius:7px;padding:4px 10px;line-height:1.2;text-align:center;min-width:36px;}
+.vrow.s1 .badge{background:var(--primary);}
+.vrow.s3 .badge{background:var(--warm);}
+.vc{flex:1;}
+.vc .h{display:flex;align-items:baseline;gap:10px;margin-bottom:9px;flex-wrap:wrap;}
+.vc .h b{font-family:'Space Mono',monospace;font-size:14px;color:var(--green);letter-spacing:.5px;}
+.vc .h span{font-size:10px;color:var(--sage);text-transform:uppercase;letter-spacing:.5px;}
+.vc .pills{display:flex;flex-wrap:wrap;gap:6px;}
+.vc .pp{font-size:11.5px;background:var(--card);border:1px solid var(--border);border-radius:20px;padding:4px 12px;color:var(--muted);}
+.vc .pp.new{background:var(--lemon-bg);border-color:var(--lemon);color:var(--lemon-tx);font-weight:600;}
+.vc .note{font-size:11px;color:var(--sage);margin-top:8px;font-style:italic;}
+.h2note{margin-top:14px;padding:12px 18px;border-radius:8px;background:var(--dark);color:#D5E8B8;font-size:12.5px;}
+.h2note b{color:var(--lemon);}
+
+/* CM */
+.cm{background:var(--dark);color:#fff;border-radius:12px;padding:22px 26px;margin-top:12px;}
+.cm .txt{font-family:'Cormorant Garamond',serif;font-size:22px;line-height:1.42;}
+.cm .txt b{color:var(--lemon);}
+.cm .sub{font-size:12px;color:var(--warm2);margin-top:9px;}
+
+/* Pain */
+.pain{display:grid;grid-template-columns:repeat(3,1fr);gap:13px;margin-top:8px;}
+.pcard{background:var(--card2);border:1px solid var(--border2);border-radius:10px;padding:16px 17px;border-top:3px solid var(--primary);}
+.pcard .k{font-family:'Space Mono',monospace;font-size:22px;color:var(--border);font-weight:700;line-height:1;margin-bottom:8px;}
+.pcard h5{font-size:13.5px;color:var(--green);margin-bottom:7px;}
+.pcard p{font-size:11.5px;margin:0;line-height:1.55;}
+
+/* H2 priorities */
+.prio{display:grid;grid-template-columns:repeat(3,1fr);gap:13px;margin-top:10px;}
+.prio .p{background:var(--card2);border:1px solid var(--border2);border-radius:10px;padding:16px 17px;border-left:3px solid var(--warm);}
+.prio .p .n{font-family:'Space Mono',monospace;font-size:11px;color:var(--sage);margin-bottom:7px;letter-spacing:.5px;}
+.prio .p .d{font-size:12.5px;color:var(--muted);line-height:1.5;}
+
+.ft{background:var(--card2);border-top:1px solid var(--border);padding:16px 48px;text-align:center;
+  font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:1.5px;color:var(--sage);text-transform:uppercase;}
+
+@media print{
+  body{background:#fff;padding:0;}
+  .page{box-shadow:none;border:none;max-width:100%;}
+  .sec,.bcard,.cm,.chain,.lifecycle,.pain,.prio,.track-wrap{break-inside:avoid;}
+}
+@media(max-width:720px){
+  .two,.pain,.prio,.tier2{grid-template-columns:1fr;}
+  .chain{grid-template-columns:1fr;}.arrow{transform:rotate(90deg);justify-content:center;}
+  .lifecycle{grid-template-columns:1fr;}.lc-arrow{transform:rotate(90deg);padding:8px 0;}
+  .body,.hd,.ft{padding-left:24px;padding-right:24px;}.hd h1{font-size:32px;}
+}
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="hd">
+    <div class="brand">H1 Review &amp; H2 Partnership Alignment</div>
+    <h1>AKASO <span class="x">×</span> Amazon Retail</h1>
+    <div class="meta">BCN10, Barcelona &nbsp;·&nbsp; Tuesday 28 July 2026</div>
+  </div>
+
+  <div class="body">
+
+    <!-- 01 Vision -->
+    <div class="sec">
+      <div class="sec-h"><span class="sec-n">01</span><span class="sec-t">Our Vision</span></div>
+      <p class="lead">Yesterday we visited Codorníu. It never made great Cava accessible by compromising quality — it did so through innovation, engineering and scale. That is how we think about AKASO: not to win the top 5% of professional creators, but to make <b>premium imaging an everyday experience</b> for millions.</p>
+      <div class="chain">
+        <div class="step"><div class="who">CODORNÍU</div><div class="what">Sparkling wine</div><div class="via">engineering &amp; scale</div></div>
+        <div class="arrow">→</div>
+        <div class="step"><div class="who">AMAZON</div><div class="what">Access to products</div><div class="via">retail &amp; logistics</div></div>
+        <div class="arrow">→</div>
+        <div class="step hero"><div class="who">AKASO</div><div class="what">Premium imaging</div><div class="via">innovation &amp; manufacturing</div></div>
+      </div>
+    </div>
+
+    <!-- 02 Why Amazon -->
+    <div class="sec">
+      <div class="sec-h"><span class="sec-n">02</span><span class="sec-t">Why Amazon Retail</span></div>
+      <p>More than a sales channel — a strategic partner that shares our core strength: bringing high-quality products to millions through operational excellence and scale. Together, a <b>sustainable Retail business</b> on five pillars:</p>
+      <div class="pillars">
+        <span class="pill">Customer Experience</span>
+        <span class="pill key">Sustainable Contribution Margin</span>
+        <span class="pill">Stable Pricing</span>
+        <span class="pill">Reliable Supply Chain</span>
+        <span class="pill">Long-term Growth</span>
+      </div>
+    </div>
+
+    <!-- 03 Brand Architecture -->
+    <div class="sec">
+      <div class="sec-h"><span class="sec-n">03</span><span class="sec-t">Brand Architecture</span></div>
+      <div class="two">
+        <div class="bcard">
+          <h4>AKASO</h4><div class="tag">Sports &amp; Outdoor Imaging</div>
+          <p>Higher brand equity, higher value per unit.</p>
+          <div class="chips"><span class="chip">Action cameras</span><span class="chip">360° cameras</span><span class="chip">Wearable / pocket</span><span class="chip">Gimbal imaging</span></div>
+        </div>
+        <div class="bcard dt">
+          <h4>DRAGON TOUCH</h4><div class="tag">Smart-Home Imaging &amp; Display</div>
+          <p>Larger screens, a different customer, a different shelf.</p>
+          <div class="chips"><span class="chip">Digital calendars</span><span class="chip">Cloud photo frames</span></div>
+        </div>
+      </div>
+      <div class="nooverlap">Two brands, two categories — no overlap, no price conflict. Never the same keyword, buyer, or price band.</div>
+    </div>
+
+    <!-- 04 1P vs 3P -->
+    <div class="sec">
+      <div class="sec-h"><span class="sec-n">04</span><span class="sec-t">1P vs 3P — Operating Philosophy</span></div>
+      <p>Two different operating capabilities, not substitutes. Model decided by product maturity, demand stability, supply, channel price structure and Amazon contribution profit.</p>
+      <div class="lifecycle">
+        <div class="lc p3">
+          <div class="lbl">3P</div><div class="role">Validation &amp; Incubation</div>
+          <div class="crit">New products in validation</div>
+          <div class="crit">Volatile demand / fast-iterating</div>
+          <div class="crit">Long-tail SKUs &amp; accessories</div>
+          <div class="crit">Autonomous pricing &amp; ad testing</div>
+        </div>
+        <div class="lc-arrow">→</div>
+        <div class="lc p1">
+          <div class="lbl">1P</div><div class="role">Scaled Retailing of Mature Products</div>
+          <div class="crit">Stable volume &amp; returns</div>
+          <div class="crit">Stable, replenishable supply</div>
+          <div class="crit">Mature, stable price structure</div>
+          <div class="crit">Amplified by Amazon scale &amp; traffic</div>
+        </div>
+      </div>
+      <div class="oneline"><b>3P carries validation and incubation; 1P carries the scaled retailing of mature products.</b> A lifecycle division of labour.</div>
+    </div>
+
+    <!-- 05 New Launches -->
+    <div class="sec">
+      <div class="sec-h"><span class="sec-n">05</span><span class="sec-t">New Launches — Read by 1P-Readiness</span></div>
+      <div class="axis">
+        <div class="rail">
+          <span class="cap t">1P</span>
+          <span class="axlabel">Maturity →</span>
+          <span class="cap b">3P</span>
+        </div>
+        <div class="steps">
+          <div class="vrow s1">
+            <span class="badge">1P</span>
+            <div class="vc">
+              <div class="h"><b>SCALED RETAIL</b><span>already onboarding</span></div>
+              <div class="pills"><span class="pp">Action-camera bundles</span><span class="pp">360° cameras</span><span class="pp">Digital calendars &amp; cloud frames</span></div>
+            </div>
+          </div>
+          <div class="vrow s2">
+            <span class="badge">Pilot</span>
+            <div class="vc">
+              <div class="h"><b>JOINT PILOT</b><span>selected markets / ASINs / scale</span></div>
+              <div class="pills"><span class="pp">AKASO 360 · 5.7K bundles</span><span class="pp">New Dragon Touch calendars</span></div>
+              <div class="note">Scored on CM · returns · turns · price stability over an agreed window.</div>
+            </div>
+          </div>
+          <div class="vrow s3">
+            <span class="badge">3P</span>
+            <div class="vc">
+              <div class="h"><b>VALIDATION</b><span>incubating, not yet committed</span></div>
+              <div class="pills"><span class="pp new">Gimbal cameras · H2</span><span class="pp new">Wearable / pocket cams · H2</span><span class="pp new">New calendars · H2</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="h2note"><b>H2 launch focus:</b> wearable / pocket cameras, gimbal cameras, new digital calendars — progressed under the same Tier-2 joint-validation approach.</div>
+    </div>
+
+    <!-- 06 CM -->
+    <div class="sec">
+      <div class="sec-h"><span class="sec-n">06</span><span class="sec-t">Beyond Net PPM — a Sustainable CM</span></div>
+      <div class="cm">
+        <div class="txt">Net PPM is the <b>entry metric</b>; sustainable CM is the <b>operating outcome</b> we should jointly optimize.</div>
+        <div class="sub">Accounting for retail price stability, returns, logistics, inventory turns and promotional requirements.</div>
+      </div>
+    </div>
+
+    <!-- 07 Pain Points -->
+    <div class="sec">
+      <div class="sec-h"><span class="sec-n">07</span><span class="sec-t">Pain Points — Solve Together</span></div>
+      <div class="pain">
+        <div class="pcard"><div class="k">01</div><h5>Price &amp; channel consistency</h5><p>Retail price well-managed via distinct price models across channels; we keep strengthening <b>Deal-price pre-alignment</b> with Amazon.</p></div>
+        <div class="pcard"><div class="k">02</div><h5>New products &amp; forecasting</h5><p>Small first orders, replenishment rolled off actual sell-through — avoiding one-shot POs that create inventory &amp; price pressure.</p></div>
+        <div class="pcard"><div class="k">03</div><h5>Data visibility</h5><p>Jointly review sell-in vs sell-through, inventory coverage, return reasons, CM drivers, traffic / conversion / availability.</p></div>
+      </div>
+    </div>
+
+    <!-- 08 H2 Priorities -->
+    <div class="sec">
+      <div class="sec-h"><span class="sec-n">08</span><span class="sec-t">Proposed H2 Joint Priorities</span></div>
+      <div class="prio">
+        <div class="p"><div class="n">PRIORITY 01</div><div class="d">First Tier-2 ASINs into a joint 1P pilot, with a defined CM / returns scorecard.</div></div>
+        <div class="p"><div class="n">PRIORITY 02</div><div class="d">A price-consistency &amp; Deal pre-alignment mechanism.</div></div>
+        <div class="p"><div class="n">PRIORITY 03</div><div class="d">A shared sell-through data cadence.</div></div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="ft">AKASO × Amazon Retail &nbsp;·&nbsp; Confidential &nbsp;·&nbsp; Barcelona 2026</div>
+
+</div>
+</body>
+</html>
