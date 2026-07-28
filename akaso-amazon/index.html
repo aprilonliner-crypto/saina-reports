@@ -48,13 +48,13 @@ p{color:var(--muted);font-size:14px;margin-bottom:8px;}
 p b,li b{color:var(--green);font-weight:600;}
 .lead{font-size:15px;color:var(--text);line-height:1.7;}
 
-/* Democratize chain */
+/* Accessible chain */
 .chain{display:grid;grid-template-columns:1fr auto 1fr auto 1fr;align-items:stretch;gap:8px;margin-top:18px;}
-.step{background:var(--card2);border:1px solid var(--border2);border-radius:10px;padding:18px 14px;text-align:center;}
+.step{background:var(--card2);border:1px solid var(--border2);border-radius:10px;padding:18px 15px;text-align:center;display:flex;flex-direction:column;}
 .step.hero{background:var(--lemon-bg);border-color:var(--lemon);}
 .step .who{font-family:'Space Mono',monospace;font-size:13px;letter-spacing:1.5px;color:var(--green);font-weight:700;}
 .step.hero .who{color:var(--lemon-tx);}
-.step .what{font-family:'Cormorant Garamond',serif;font-size:18px;color:var(--green);margin:9px 0 6px;font-weight:600;line-height:1.2;}
+.step .what{font-family:'Cormorant Garamond',serif;font-size:17px;color:var(--green);margin:10px 0 8px;font-weight:600;line-height:1.25;flex:1;display:flex;align-items:center;justify-content:center;}
 .step .via{font-size:11px;color:var(--muted);line-height:1.4;font-style:italic;}
 .arrow{display:flex;align-items:center;font-size:20px;color:var(--sage);}
 
@@ -63,6 +63,12 @@ p b,li b{color:var(--green);font-weight:600;}
 .pill{font-family:'Space Mono',monospace;font-size:12px;background:var(--tag-bg);color:var(--green);
   border:1px solid var(--border2);border-radius:30px;padding:9px 16px;}
 .pill.key{background:var(--lemon-bg);border-color:var(--lemon);color:var(--lemon-tx);font-weight:700;}
+
+/* CM inline block */
+.cm{background:var(--dark);color:#fff;border-radius:12px;padding:20px 24px;margin-top:16px;}
+.cm .txt{font-family:'Cormorant Garamond',serif;font-size:21px;line-height:1.42;}
+.cm .txt b{color:var(--lemon);}
+.cm .sub{font-size:12px;color:var(--warm2);margin-top:8px;}
 
 /* Brand cards */
 .two{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:6px;}
@@ -76,7 +82,7 @@ p b,li b{color:var(--green);font-weight:600;}
 .chips{display:flex;flex-wrap:wrap;gap:6px;}
 .chip{font-family:'Space Mono',monospace;font-size:10.5px;background:var(--card);border:1px solid var(--border);
   border-radius:5px;padding:4px 9px;color:var(--muted);}
-.nooverlap{text-align:center;font-size:12.5px;color:var(--sage);margin-top:14px;font-style:italic;}
+.nooverlap{text-align:center;font-size:12.5px;color:var(--sage);margin-top:14px;font-style:italic;line-height:1.5;}
 
 /* Lifecycle 1P/3P */
 .lifecycle{display:grid;grid-template-columns:1fr 46px 1fr;margin-top:6px;align-items:stretch;}
@@ -95,11 +101,15 @@ p b,li b{color:var(--green);font-weight:600;}
 .lc .crit:last-child{border-bottom:none;}
 .lc-arrow{display:flex;align-items:center;justify-content:center;font-size:26px;color:var(--sage);}
 .oneline{margin-top:15px;background:var(--lemon-bg);border:1px solid var(--lemon);border-radius:8px;
-  padding:13px 18px;font-size:13.5px;color:var(--lemon-tx);text-align:center;}
+  padding:13px 18px;font-size:13px;color:var(--lemon-tx);text-align:center;line-height:1.55;}
 .oneline b{color:var(--lemon-tx);}
 
+/* Roadmap sub-head */
+.sub-h{font-family:'Space Mono',monospace;font-size:11px;letter-spacing:2px;color:var(--sage);
+  text-transform:uppercase;margin:24px 0 12px;padding-bottom:7px;border-bottom:1px solid var(--border2);}
+
 /* Vertical maturity axis (chart) */
-.axis{display:grid;grid-template-columns:52px 1fr;gap:16px;margin-top:8px;}
+.axis{display:grid;grid-template-columns:52px 1fr;gap:16px;margin-top:6px;}
 .rail{position:relative;border-radius:8px;
   background:linear-gradient(180deg,var(--primary) 0%,var(--sage) 40%,var(--border2) 60%,var(--warm2) 80%,var(--warm) 100%);}
 .rail .cap{position:absolute;left:0;right:0;text-align:center;font-family:'Space Mono',monospace;
@@ -128,27 +138,16 @@ p b,li b{color:var(--green);font-weight:600;}
 .vc .pp{font-size:11.5px;background:var(--card);border:1px solid var(--border);border-radius:20px;padding:4px 12px;color:var(--muted);}
 .vc .pp.new{background:var(--lemon-bg);border-color:var(--lemon);color:var(--lemon-tx);font-weight:600;}
 .vc .note{font-size:11px;color:var(--sage);margin-top:8px;font-style:italic;}
-.h2note{margin-top:14px;padding:12px 18px;border-radius:8px;background:var(--dark);color:#D5E8B8;font-size:12.5px;}
+.h2note{margin-top:14px;padding:12px 18px;border-radius:8px;background:var(--dark);color:#D5E8B8;font-size:12.5px;line-height:1.55;}
 .h2note b{color:var(--lemon);}
 
-/* CM */
-.cm{background:var(--dark);color:#fff;border-radius:12px;padding:22px 26px;margin-top:12px;}
-.cm .txt{font-family:'Cormorant Garamond',serif;font-size:22px;line-height:1.42;}
-.cm .txt b{color:var(--lemon);}
-.cm .sub{font-size:12px;color:var(--warm2);margin-top:9px;}
-
-/* Pain */
-.pain{display:grid;grid-template-columns:repeat(3,1fr);gap:13px;margin-top:8px;}
-.pcard{background:var(--card2);border:1px solid var(--border2);border-radius:10px;padding:16px 17px;border-top:3px solid var(--primary);}
-.pcard .k{font-family:'Space Mono',monospace;font-size:22px;color:var(--border);font-weight:700;line-height:1;margin-bottom:8px;}
-.pcard h5{font-size:13.5px;color:var(--green);margin-bottom:7px;}
-.pcard p{font-size:11.5px;margin:0;line-height:1.55;}
-
-/* H2 priorities */
-.prio{display:grid;grid-template-columns:repeat(3,1fr);gap:13px;margin-top:10px;}
-.prio .p{background:var(--card2);border:1px solid var(--border2);border-radius:10px;padding:16px 17px;border-left:3px solid var(--warm);}
-.prio .p .n{font-family:'Space Mono',monospace;font-size:11px;color:var(--sage);margin-bottom:7px;letter-spacing:.5px;}
-.prio .p .d{font-size:12.5px;color:var(--muted);line-height:1.5;}
+/* Align-today decisions */
+.decides{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:12px;}
+.dcard{background:var(--card2);border:1px solid var(--border2);border-radius:11px;padding:18px 19px;border-top:4px solid var(--warm);}
+.dcard .n{font-family:'Space Mono',monospace;font-size:11px;color:var(--sage);letter-spacing:1px;margin-bottom:4px;}
+.dcard h5{font-family:'Cormorant Garamond',serif;font-size:20px;color:var(--green);font-weight:700;margin-bottom:9px;line-height:1.1;}
+.dcard .d{font-size:12.5px;color:var(--muted);line-height:1.55;}
+.dcard .d b{color:var(--green);}
 
 .ft{background:var(--card2);border-top:1px solid var(--border);padding:16px 48px;text-align:center;
   font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:1.5px;color:var(--sage);text-transform:uppercase;}
@@ -156,10 +155,10 @@ p b,li b{color:var(--green);font-weight:600;}
 @media print{
   body{background:#fff;padding:0;}
   .page{box-shadow:none;border:none;max-width:100%;}
-  .sec,.bcard,.cm,.chain,.lifecycle,.pain,.prio,.track-wrap{break-inside:avoid;}
+  .sec,.bcard,.cm,.chain,.lifecycle,.decides,.axis{break-inside:avoid;}
 }
 @media(max-width:720px){
-  .two,.pain,.prio,.tier2{grid-template-columns:1fr;}
+  .two,.decides{grid-template-columns:1fr;}
   .chain{grid-template-columns:1fr;}.arrow{transform:rotate(90deg);justify-content:center;}
   .lifecycle{grid-template-columns:1fr;}.lc-arrow{transform:rotate(90deg);padding:8px 0;}
   .body,.hd,.ft{padding-left:24px;padding-right:24px;}.hd h1{font-size:32px;}
@@ -177,29 +176,33 @@ p b,li b{color:var(--green);font-weight:600;}
 
   <div class="body">
 
-    <!-- 01 Vision -->
+    <!-- 01 Shared Vision -->
     <div class="sec">
-      <div class="sec-h"><span class="sec-n">01</span><span class="sec-t">Our Vision</span></div>
-      <p class="lead">Yesterday we visited Codorníu. It never made great Cava accessible by compromising quality — it did so through innovation, engineering and scale. That is how we think about AKASO: not to win the top 5% of professional creators, but to make <b>premium imaging an everyday experience</b> for millions.</p>
+      <div class="sec-h"><span class="sec-n">01</span><span class="sec-t">Shared Vision</span></div>
+      <p class="lead">Yesterday, at Codorníu, we saw how innovation, engineering and scale can make quality once reserved for the few accessible to many. That is also how we think about AKASO: not to compete for the most professional 5% of creators, but to make <b>great imaging experiences accessible</b> to more families, travellers and outdoor enthusiasts.</p>
       <div class="chain">
-        <div class="step"><div class="who">CODORNÍU</div><div class="what">Sparkling wine</div><div class="via">engineering &amp; scale</div></div>
+        <div class="step"><div class="who">CODORNÍU</div><div class="what">Making great Cava accessible</div><div class="via">through innovation and scale</div></div>
         <div class="arrow">→</div>
-        <div class="step"><div class="who">AMAZON</div><div class="what">Access to products</div><div class="via">retail &amp; logistics</div></div>
+        <div class="step"><div class="who">AMAZON</div><div class="what">Making great products accessible at scale</div><div class="via">through retail and logistics</div></div>
         <div class="arrow">→</div>
-        <div class="step hero"><div class="who">AKASO</div><div class="what">Premium imaging</div><div class="via">innovation &amp; manufacturing</div></div>
+        <div class="step hero"><div class="who">AKASO</div><div class="what">Making great imaging accessible</div><div class="via">through product innovation and engineering</div></div>
       </div>
     </div>
 
-    <!-- 02 Why Amazon -->
+    <!-- 02 Why AKASO × Amazon -->
     <div class="sec">
-      <div class="sec-h"><span class="sec-n">02</span><span class="sec-t">Why Amazon Retail</span></div>
-      <p>More than a sales channel — a strategic partner that shares our core strength: bringing high-quality products to millions through operational excellence and scale. Together, a <b>sustainable Retail business</b> on five pillars:</p>
+      <div class="sec-h"><span class="sec-n">02</span><span class="sec-t">Why AKASO × Amazon Retail</span></div>
+      <p>AKASO brings product innovation, engineering and manufacturing at an accessible price point. Amazon brings customer trust, retail infrastructure and global scale. Together, we can build a <b>sustainable Retail business</b> around five shared disciplines:</p>
       <div class="pillars">
         <span class="pill">Customer Experience</span>
         <span class="pill key">Sustainable Contribution Margin</span>
         <span class="pill">Stable Pricing</span>
         <span class="pill">Reliable Supply Chain</span>
-        <span class="pill">Long-term Growth</span>
+        <span class="pill">Profitable Long-term Growth</span>
+      </div>
+      <div class="cm">
+        <div class="txt">Net PPM is the <b>entry metric</b>; a sustainable CM is the <b>operating outcome</b> we should jointly optimize.</div>
+        <div class="sub">Accounting for retail price stability, returns, logistics, inventory turns and promotional requirements.</div>
       </div>
     </div>
 
@@ -209,7 +212,7 @@ p b,li b{color:var(--green);font-weight:600;}
       <div class="two">
         <div class="bcard">
           <h4>AKASO</h4><div class="tag">Sports &amp; Outdoor Imaging</div>
-          <p>Higher brand equity, higher value per unit.</p>
+          <p>Stronger brand-led positioning and higher-value imaging experiences.</p>
           <div class="chips"><span class="chip">Action cameras</span><span class="chip">360° cameras</span><span class="chip">Wearable / pocket</span><span class="chip">Gimbal imaging</span></div>
         </div>
         <div class="bcard dt">
@@ -218,16 +221,16 @@ p b,li b{color:var(--green);font-weight:600;}
           <div class="chips"><span class="chip">Digital calendars</span><span class="chip">Cloud photo frames</span></div>
         </div>
       </div>
-      <div class="nooverlap">Two brands, two categories — no overlap, no price conflict. Never the same keyword, buyer, or price band.</div>
+      <div class="nooverlap">Two brands with clearly differentiated category roles, customer use cases and price architecture — designed to minimize channel and portfolio conflict.</div>
     </div>
 
-    <!-- 04 1P vs 3P -->
+    <!-- 04 1P / 3P Portfolio Roadmap -->
     <div class="sec">
-      <div class="sec-h"><span class="sec-n">04</span><span class="sec-t">1P vs 3P — Operating Philosophy</span></div>
-      <p>Two different operating capabilities, not substitutes. Model decided by product maturity, demand stability, supply, channel price structure and Amazon contribution profit.</p>
+      <div class="sec-h"><span class="sec-n">04</span><span class="sec-t">1P / 3P Portfolio Roadmap</span></div>
+      <p>We treat 1P and 3P as two different operating capabilities, not substitutes. Which model a product runs in is decided by maturity, demand stability, supply, channel price structure and Amazon contribution margin.</p>
       <div class="lifecycle">
         <div class="lc p3">
-          <div class="lbl">3P</div><div class="role">Validation &amp; Incubation</div>
+          <div class="lbl">3P</div><div class="role">Fast Validation &amp; Incubation</div>
           <div class="crit">New products in validation</div>
           <div class="crit">Volatile demand / fast-iterating</div>
           <div class="crit">Long-tail SKUs &amp; accessories</div>
@@ -235,23 +238,20 @@ p b,li b{color:var(--green);font-weight:600;}
         </div>
         <div class="lc-arrow">→</div>
         <div class="lc p1">
-          <div class="lbl">1P</div><div class="role">Scaled Retailing of Mature Products</div>
+          <div class="lbl">1P</div><div class="role">Broader Reach &amp; Retail Efficiency</div>
           <div class="crit">Stable volume &amp; returns</div>
-          <div class="crit">Stable, replenishable supply</div>
+          <div class="crit">Reliable, replenishable supply</div>
           <div class="crit">Mature, stable price structure</div>
-          <div class="crit">Amplified by Amazon scale &amp; traffic</div>
+          <div class="crit">Scalable replenishment at scale</div>
         </div>
       </div>
-      <div class="oneline"><b>3P carries validation and incubation; 1P carries the scaled retailing of mature products.</b> A lifecycle division of labour.</div>
-    </div>
+      <div class="oneline"><b>3P enables fast validation and incubation; 1P unlocks broader customer reach, retail efficiency and scalable replenishment</b> once a product is ready. A lifecycle partnership, not just a channel split.</div>
 
-    <!-- 05 New Launches -->
-    <div class="sec">
-      <div class="sec-h"><span class="sec-n">05</span><span class="sec-t">New Launches — Read by 1P-Readiness</span></div>
+      <div class="sub-h">Portfolio Roadmap — by 1P readiness</div>
       <div class="axis">
         <div class="rail">
           <span class="cap t">1P</span>
-          <span class="axlabel">Maturity →</span>
+          <span class="axlabel">Readiness →</span>
           <span class="cap b">3P</span>
         </div>
         <div class="steps">
@@ -259,14 +259,14 @@ p b,li b{color:var(--green);font-weight:600;}
             <span class="badge">1P</span>
             <div class="vc">
               <div class="h"><b>SCALED RETAIL</b><span>already onboarding</span></div>
-              <div class="pills"><span class="pp">Action-camera bundles</span><span class="pp">360° cameras</span><span class="pp">Digital calendars &amp; cloud frames</span></div>
+              <div class="pills"><span class="pp">Action-camera bundles</span><span class="pp">360° cameras</span><span class="pp">Established calendars &amp; cloud frames</span></div>
             </div>
           </div>
           <div class="vrow s2">
             <span class="badge">Pilot</span>
             <div class="vc">
-              <div class="h"><b>JOINT PILOT</b><span>selected markets / ASINs / scale</span></div>
-              <div class="pills"><span class="pp">AKASO 360 · 5.7K bundles</span><span class="pp">New Dragon Touch calendars</span></div>
+              <div class="h"><b>JOINT 1P PILOT</b><span>selected markets / ASINs / scale</span></div>
+              <div class="pills"><span class="pp">AKASO 360 · 5.7K bundles</span></div>
               <div class="note">Scored on CM · returns · turns · price stability over an agreed window.</div>
             </div>
           </div>
@@ -274,40 +274,31 @@ p b,li b{color:var(--green);font-weight:600;}
             <span class="badge">3P</span>
             <div class="vc">
               <div class="h"><b>VALIDATION</b><span>incubating, not yet committed</span></div>
-              <div class="pills"><span class="pp new">Gimbal cameras · H2</span><span class="pp new">Wearable / pocket cams · H2</span><span class="pp new">New calendars · H2</span></div>
+              <div class="pills"><span class="pp new">Gimbal cameras · H2</span><span class="pp new">Wearable / pocket cams · H2</span><span class="pp new">Next-gen calendars · H2</span></div>
             </div>
           </div>
         </div>
       </div>
-      <div class="h2note"><b>H2 launch focus:</b> wearable / pocket cameras, gimbal cameras, new digital calendars — progressed under the same Tier-2 joint-validation approach.</div>
+      <div class="h2note"><b>H2 launch focus:</b> wearable and pocket cameras, gimbal cameras and next-generation digital calendars — starting in 3P validation, with selected ASINs progressing into joint 1P pilots once agreed readiness criteria are met.</div>
     </div>
 
-    <!-- 06 CM -->
+    <!-- 05 What We Propose to Align Today -->
     <div class="sec">
-      <div class="sec-h"><span class="sec-n">06</span><span class="sec-t">Beyond Net PPM — a Sustainable CM</span></div>
-      <div class="cm">
-        <div class="txt">Net PPM is the <b>entry metric</b>; sustainable CM is the <b>operating outcome</b> we should jointly optimize.</div>
-        <div class="sub">Accounting for retail price stability, returns, logistics, inventory turns and promotional requirements.</div>
-      </div>
-    </div>
-
-    <!-- 07 Pain Points -->
-    <div class="sec">
-      <div class="sec-h"><span class="sec-n">07</span><span class="sec-t">Pain Points — Solve Together</span></div>
-      <div class="pain">
-        <div class="pcard"><div class="k">01</div><h5>Price &amp; channel consistency</h5><p>Retail price well-managed via distinct price models across channels; we keep strengthening <b>Deal-price pre-alignment</b> with Amazon.</p></div>
-        <div class="pcard"><div class="k">02</div><h5>New products &amp; forecasting</h5><p>Small first orders, replenishment rolled off actual sell-through — avoiding one-shot POs that create inventory &amp; price pressure.</p></div>
-        <div class="pcard"><div class="k">03</div><h5>Data visibility</h5><p>Jointly review sell-in vs sell-through, inventory coverage, return reasons, CM drivers, traffic / conversion / availability.</p></div>
-      </div>
-    </div>
-
-    <!-- 08 H2 Priorities -->
-    <div class="sec">
-      <div class="sec-h"><span class="sec-n">08</span><span class="sec-t">Proposed H2 Joint Priorities</span></div>
-      <div class="prio">
-        <div class="p"><div class="n">PRIORITY 01</div><div class="d">First Tier-2 ASINs into a joint 1P pilot, with a defined CM / returns scorecard.</div></div>
-        <div class="p"><div class="n">PRIORITY 02</div><div class="d">A price-consistency &amp; Deal pre-alignment mechanism.</div></div>
-        <div class="p"><div class="n">PRIORITY 03</div><div class="d">A shared sell-through data cadence.</div></div>
+      <div class="sec-h"><span class="sec-n">05</span><span class="sec-t">What We Propose to Align</span></div>
+      <p>A few constraints we would like to solve together — each with a concrete next step we can align on, today or as a follow-up: pricing &amp; channel consistency, new-product forecasting, and shared data visibility.</p>
+      <div class="decides">
+        <div class="dcard">
+          <div class="n">01</div><h5>Pilot scope</h5>
+          <div class="d">Confirm the <b>first ASINs and markets</b> for a joint 1P pilot, with an agreed CM, returns and inventory-turn scorecard.</div>
+        </div>
+        <div class="dcard">
+          <div class="n">02</div><h5>Price alignment</h5>
+          <div class="d">Establish a <b>Deal and promotional-price pre-alignment</b> mechanism across 1P and 3P.</div>
+        </div>
+        <div class="dcard">
+          <div class="n">03</div><h5>Business cadence</h5>
+          <div class="d">Set a <b>regular joint review</b> of sell-through, inventory coverage, returns, availability and CM drivers.</div>
+        </div>
       </div>
     </div>
 
