@@ -23,7 +23,6 @@ body{
   line-height:1.5; padding-bottom:40px;
   overscroll-behavior-y:contain;
 }
-/* header */
 .top{
   position:sticky; top:0; z-index:20;
   background:var(--dark); color:var(--card);
@@ -31,7 +30,6 @@ body{
 }
 .top h1{font-family:'Cormorant Garamond';font-size:24px;font-weight:600;letter-spacing:.3px;line-height:1.1}
 .top .sub{font-family:'Space Mono';font-size:10px;letter-spacing:1px;text-transform:uppercase;color:#A9C3B4;margin-top:3px}
-/* nav chips */
 .nav{
   display:flex; gap:8px; overflow-x:auto; padding:10px 14px;
   background:var(--dark); position:sticky; top:64px; z-index:19;
@@ -46,7 +44,6 @@ body{
   padding:7px 12px; border-radius:20px; white-space:nowrap;
 }
 .nav a:active{background:var(--primary);color:#fff}
-/* sections */
 .wrap{padding:16px 14px 0}
 section{
   background:var(--card); border-radius:18px; margin-bottom:16px;
@@ -56,30 +53,30 @@ section{
 .sh{display:flex;align-items:baseline;gap:8px;margin-bottom:12px}
 .sh .no{font-family:'Space Mono';font-size:11px;color:var(--warm);font-weight:700}
 .sh h2{font-family:'Cormorant Garamond';font-size:21px;font-weight:600;color:var(--dark);line-height:1.1}
-.sh .zh{font-size:11px;color:var(--muted);margin-left:auto;text-align:right;max-width:42%}
-/* phrase lines — tap to mark done */
+.sh .zh{font-size:11px;color:var(--muted);margin-left:auto;text-align:right;max-width:46%}
 .p{
   position:relative; padding:12px 14px 12px 40px; border-radius:12px;
   border:1px solid var(--line); margin-bottom:9px;
   font-size:16.5px; font-weight:500; color:var(--ink);
-  transition:background .15s, opacity .15s;
-  cursor:pointer;
+  transition:background .15s, opacity .15s; cursor:pointer;
 }
 .p:before{
   content:""; position:absolute; left:14px; top:15px;
   width:15px; height:15px; border-radius:50%;
-  border:2px solid var(--primary); background:transparent;
-  transition:all .15s;
+  border:2px solid var(--primary); background:transparent; transition:all .15s;
 }
 .p.done{background:#F0EEDC;opacity:.5}
 .p.done:before{background:var(--primary);box-shadow:inset 0 0 0 2px var(--card)}
 .p.done .en{text-decoration:line-through;text-decoration-color:var(--muted)}
 .p .note{display:block;font-size:12px;font-weight:400;color:var(--muted);margin-top:4px}
 .p b{color:var(--primary);font-weight:700}
-/* accent variants */
 .p.hard{border-left:4px solid var(--warm)}
 .p.key{border-left:4px solid var(--lemon);background:var(--lemon-bg)}
 .p.key:before{border-color:#8a9016}
+/* glue mini-labels */
+.glabel{font-family:'Space Mono';font-size:10px;letter-spacing:1.5px;text-transform:uppercase;
+  color:var(--warm);margin:14px 0 7px;font-weight:700}
+.glabel:first-of-type{margin-top:2px}
 /* elevator box */
 .elevator{background:var(--dark)}
 .elevator .sh h2{color:var(--card)}
@@ -88,10 +85,14 @@ section{
 .elevator .p.key b{color:var(--lemon)}
 .elevator .p.key:before{border-color:var(--lemon)}
 .elevator .p.key.done{background:rgba(255,255,255,.05)}
+/* wildfire box */
+.fire{background:var(--warm-bg)}
+.fire .sh h2{color:#9C5F30}
+.fire .p{border-color:#E7C9AC}
+.fire .p b{color:#9C5F30}
 /* rescue box */
 .rescue{background:var(--warm-bg);border:1px dashed var(--warm)}
 .rescue .sh h2{color:#9C5F30}
-/* footer */
 .foot{text-align:center;font-family:'Space Mono';font-size:10px;color:var(--muted);letter-spacing:1px;padding:8px 0 0}
 .tip{background:rgba(255,255,255,.5);border-radius:12px;padding:10px 14px;margin:0 14px 14px;font-size:12px;color:var(--dark);text-align:center}
 .tip b{color:var(--primary)}
@@ -106,14 +107,14 @@ section{
 
 <nav class="nav">
   <a href="#s0">⚡30s</a>
-  <a href="#s1">Open</a>
-  <a href="#s2">Brands</a>
-  <a href="#s3">1P/3P</a>
-  <a href="#s4">Launches</a>
-  <a href="#s5">Net PPM</a>
-  <a href="#s6">Pain</a>
-  <a href="#s7">Close</a>
-  <a href="#s8">Rescue</a>
+  <a href="#s1">Codorníu</a>
+  <a href="#s2">Why</a>
+  <a href="#s3">Brands</a>
+  <a href="#s4">Roadmap</a>
+  <a href="#s5">Align</a>
+  <a href="#sg">💬Glue</a>
+  <a href="#sf">🔥Spain</a>
+  <a href="#sos">SOS</a>
 </nav>
 
 <div class="tip">点句子 = 打勾划掉（讲过的）· <b>下滑看全部</b></div>
@@ -122,63 +123,90 @@ section{
 
 <section id="s0" class="elevator">
   <div class="sh"><span class="no">30s</span><h2>Elevator Version</h2><span class="zh">时间被压缩 · 只讲这三句</span></div>
-  <div class="p key"><span class="en">"<b>1P and 3P aren't either/or</b> — 3P validates & incubates, 1P scales the mature winners. Products graduate up."</span></div>
-  <div class="p key"><span class="en">"Let's optimize a <b>sustainable contribution margin together</b> — not just the opening Net PPM."</span></div>
-  <div class="p key"><span class="en">"Three next steps: <b>first Tier-2 ASINs for a 1P pilot · price/Deal pre-alignment · shared data cadence.</b>"</span></div>
+  <div class="p key"><span class="en">"<b>1P and 3P aren't either/or</b> — 3P validates & incubates, 1P unlocks broader reach & retail efficiency once a product's ready."</span></div>
+  <div class="p key"><span class="en">"Let's optimize a <b>sustainable contribution margin together</b> — Net PPM is just the entry ticket."</span></div>
+  <div class="p key"><span class="en">"Three to align: <b>first ASINs & markets for a 1P pilot · a Deal/price pre-alignment mechanism · a regular joint data review.</b>"</span></div>
 </section>
 
 <section id="s1">
   <div class="sh"><span class="no">01</span><h2>Opening — Codorníu</h2><span class="zh">破冰 + 立主题</span></div>
   <div class="p"><span class="en">"Before we dive in — yesterday we visited <b>Codorníu</b>, just outside Barcelona. It really stuck with me."</span></div>
-  <div class="p"><span class="en">"They never made great Cava <b>cheaper by cutting corners</b> — they made it <b>accessible</b> through engineering and scale."</span></div>
-  <div class="p"><span class="en">"That's exactly how I think about AKASO. Not chasing the top 5% of pros — we want premium imaging to be an <b>everyday thing</b> for millions of families."</span></div>
-  <div class="p"><span class="en">"Amazon does the same for reach — so this feels like a very natural partnership."</span></div>
+  <div class="p"><span class="en">"They never made great Cava accessible by cutting corners — they did it through <b>innovation, engineering and scale</b>."</span></div>
+  <div class="p"><span class="en">"That's how I think about AKASO. Not chasing the top 5% of pros — making <b>great imaging accessible</b> to more families, travellers and outdoor lovers."</span></div>
+  <div class="p"><span class="en">"Amazon does the same for reach — so this feels like a natural fit."</span></div>
 </section>
 
 <section id="s2">
-  <div class="sh"><span class="no">02</span><h2>Two Brands</h2><span class="zh">不重叠 不打价</span></div>
-  <div class="p"><span class="en">"Quick clarity on our two brands — they often get lumped together."</span></div>
-  <div class="p"><span class="en">"<b>AKASO</b> = sports & outdoor imaging. <b>Dragon Touch</b> = smart-home display — calendars, cloud frames. Different customer, different shelf."</span></div>
-  <div class="p key"><span class="en">"So — <b>no overlap, no price conflict.</b> Never the same keyword or buyer."</span></div>
+  <div class="sh"><span class="no">02</span><h2>Why AKASO × Amazon</h2><span class="zh">双方能力互补 · 不是申请加入</span></div>
+  <div class="p"><span class="en">"The way I see it — <b>AKASO brings</b> product innovation, engineering and manufacturing at an accessible price. <b>Amazon brings</b> customer trust, retail infrastructure and global scale."</span></div>
+  <div class="p"><span class="en">"Together we can build a <b>sustainable Retail business</b> — not just a good opening number."</span></div>
+  <div class="p key"><span class="en">"Net PPM is the entry metric. What we jointly optimize is a <b>sustainable contribution margin</b> — returns, turns, price stability."</span></div>
 </section>
 
 <section id="s3">
-  <div class="sh"><span class="no">03</span><h2>1P vs 3P</h2><span class="zh">核心立场 · 稳住</span></div>
-  <div class="p"><span class="en">"We don't see 1P and 3P as either/or. They're <b>two different capabilities.</b>"</span></div>
-  <div class="p key"><span class="en">"<b>3P carries validation & incubation. 1P carries the scaled retailing of mature products.</b> It's a lifecycle thing."</span></div>
-  <div class="p"><span class="en">"A product <b>'graduates'</b> into 1P once volume, returns and pricing are stable — not before."</span></div>
+  <div class="sh"><span class="no">03</span><h2>Two Brands</h2><span class="zh">差异化 · 不打价</span></div>
+  <div class="p"><span class="en">"Quick clarity on our two brands — they often get lumped together."</span></div>
+  <div class="p"><span class="en">"<b>AKASO</b> = sports & outdoor imaging. <b>Dragon Touch</b> = smart-home display — calendars, cloud frames. Different customer, different shelf."</span></div>
+  <div class="p key"><span class="en">"Clearly differentiated <b>roles, use cases and price architecture</b> — designed to minimize channel and portfolio conflict."</span></div>
 </section>
 
 <section id="s4">
-  <div class="sh"><span class="no">04</span><h2>New Launches</h2><span class="zh">指屏幕竖轴那张图</span></div>
-  <div class="p"><span class="en">"I've mapped the launches by how ready they are for 1P." <span class="note">👉 指竖轴</span></span></div>
-  <div class="p"><span class="en">"Top ones are <b>already rolling onto 1P.</b> The middle one — let's run a <b>joint pilot</b>: selected markets, a few ASINs, scored together over an agreed window."</span></div>
-  <div class="p"><span class="en">"H2 ones are still incubating — I'd rather validate them properly than over-commit."</span></div>
+  <div class="sh"><span class="no">04</span><h2>1P / 3P Roadmap</h2><span class="zh">核心立场 · 指竖轴那张图</span></div>
+  <div class="p"><span class="en">"We treat 1P and 3P as <b>two capabilities, not either/or</b>."</span></div>
+  <div class="p key"><span class="en">"<b>3P validates & incubates. 1P unlocks broader reach, retail efficiency & scalable replenishment</b> once a product's ready. A lifecycle partnership."</span></div>
+  <div class="p"><span class="en">"On the roadmap — some are <b>already onboarding onto 1P</b>; the AKASO 360 bundles we'd love as a <b>joint 1P pilot</b>; H2 launches <b>start in 3P validation and graduate up</b>." <span class="note">👉 指竖轴</span></span></div>
 </section>
 
 <section id="s5">
-  <div class="sh"><span class="no">05</span><h2>Beyond Net PPM</h2><span class="zh">软中带硬 · 谈钱</span></div>
-  <div class="p hard"><span class="en">"One thing I'd gently push on — let's not optimize <b>only</b> for the opening Net PPM."</span></div>
-  <div class="p key"><span class="en">"Net PPM is the entry ticket. What we should <b>jointly</b> optimize is a <b>sustainable contribution margin</b> — returns, turns, price stability."</span></div>
-  <div class="p"><span class="en">"Get that right and it's a healthier business for both sides — not just a good-looking first number."</span></div>
-</section>
-
-<section id="s6">
-  <div class="sh"><span class="no">06</span><h2>Pain Points</h2><span class="zh">一起解 · 不抱怨</span></div>
-  <div class="p"><span class="en">"A few things I'd love your help on — framed as things we solve <b>together</b>."</span></div>
-  <div class="p"><span class="en"><b>1 · Price consistency</b> — "we manage it well today; I want to keep tightening <b>Deal-price pre-alignment</b> with you."</span></div>
-  <div class="p"><span class="en"><b>2 · Forecasting</b> — "start small, replenish off <b>real sell-through</b>, rather than one big PO that creates pressure."</span></div>
-  <div class="p"><span class="en"><b>3 · Data visibility</b> — "sell-through, inventory coverage, return reasons. Same picture = we move faster."</span></div>
-</section>
-
-<section id="s7">
-  <div class="sh"><span class="no">07</span><h2>Close — 3 Things</h2><span class="zh">落到下一步</span></div>
-  <div class="p"><span class="en">"If I had to land on three things for H2…" <span class="note">👉 指第 8 节</span></span></div>
-  <div class="p key"><span class="en">"First <b>Tier-2 ASINs</b> for a 1P pilot · a <b>price / Deal pre-alignment</b> mechanism · a <b>shared data cadence.</b>"</span></div>
+  <div class="sh"><span class="no">05</span><h2>What to Align</h2><span class="zh">今天或后续跟进 · 不逼当场拍板</span></div>
+  <div class="p"><span class="en">"A few things I'd love your help on — things we solve <b>together</b>, today or as a follow-up."</span></div>
+  <div class="p key"><span class="en"><b>Pilot scope · Price alignment · Business cadence.</b></span></div>
+  <div class="p"><span class="en"><b>1 · Pilot scope</b> — confirm the first ASINs and markets, with a CM / returns / inventory-turn scorecard."</span></div>
+  <div class="p"><span class="en"><b>2 · Price alignment</b> — a Deal and promo-price pre-alignment mechanism across 1P and 3P."</span></div>
+  <div class="p"><span class="en"><b>3 · Business cadence</b> — a regular joint review of sell-through, inventory, returns and CM drivers."</span></div>
   <div class="p"><span class="en">"Does that feel <b>workable</b> from your side?"</span></div>
 </section>
 
-<section id="s8" class="rescue">
+<section id="sg">
+  <div class="sh"><span class="no">💬</span><h2>Universal Glue</h2><span class="zh">润滑 / 推进 / 缓冲万能句</span></div>
+
+  <div class="glabel">— Warm agreement 认同</div>
+  <div class="p"><span class="en">"That's a really good point."</span></div>
+  <div class="p"><span class="en">"That makes a lot of sense — thank you."</span></div>
+  <div class="p"><span class="en">"I love that. Let's build on it."</span></div>
+
+  <div class="glabel">— Buy time 争取思考</div>
+  <div class="p"><span class="en">"Let me think about that for a second."</span></div>
+  <div class="p"><span class="en">"Good question — let me give you the honest version."</span></div>
+
+  <div class="glabel">— Make sure I get it 确认理解</div>
+  <div class="p"><span class="en">"Just to make sure I understand — you mean…?"</span></div>
+  <div class="p"><span class="en">"Can I check I've got that right?"</span></div>
+
+  <div class="glabel">— Softly disagree 温和不同意</div>
+  <div class="p"><span class="en">"I see it slightly differently — can I share how?"</span></div>
+  <div class="p"><span class="en">"I hear you. One thing I'd add…"</span></div>
+
+  <div class="glabel">— Steer / park 引导 · 暂放</div>
+  <div class="p"><span class="en">"Can we come back to that one in a moment?"</span></div>
+  <div class="p"><span class="en">"Let me park that and make sure we cover…"</span></div>
+
+  <div class="glabel">— Land it 收口 · 下一步</div>
+  <div class="p"><span class="en">"So, to summarize what we've agreed…"</span></div>
+  <div class="p"><span class="en">"What would be the best next step from your side?"</span></div>
+  <div class="p"><span class="en">"Who should own this on each side?"</span></div>
+</section>
+
+<section id="sf" class="fire">
+  <div class="sh"><span class="no">🔥</span><h2>On the Wildfires</h2><span class="zh">看气氛用 · 真诚关心 · 别强行切</span></div>
+  <div class="p"><span class="en">"Before we start — I've been seeing the news about the <b>wildfires</b> this summer. I really hope you and your family are safe."</span></div>
+  <div class="p"><span class="en">"It's been a hard season for Spain with the fires — <b>how are things where you are?</b>"</span></div>
+  <div class="p"><span class="en">"Honestly, we were following it on the way in. Sending our thoughts to everyone affected."</span></div>
+  <div class="p"><span class="en">"So glad Barcelona is okay — and glad we could still meet in person."</span></div>
+  <div class="p"><span class="en" style="font-size:13px;font-weight:400;color:#9C5F30">💡 <b>用法</b>：只在自然的时候用——刚坐下寒暄、或对方主动提起。真诚就好，不要变成客套，一两句带过就切回正题。</span></div>
+</section>
+
+<section id="sos" class="rescue">
   <div class="sh"><span class="no">SOS</span><h2>Rescue Lines</h2><span class="zh">卡壳 / 被问难题</span></div>
   <div class="p hard"><span class="en">"Good question — let me give you the <b>honest version</b>." <span class="note">争取思考时间</span></span></div>
   <div class="p hard"><span class="en">"I don't have that number in front of me, but I'll <b>follow up right after this.</b>" <span class="note">数据别硬编</span></span></div>
